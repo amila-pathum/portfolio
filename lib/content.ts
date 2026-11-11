@@ -85,6 +85,55 @@ export const pipelineSteps = [
 export const projects = [
   {
     number: "PROJECT 01",
+    type: "Team Lead · 10 Members",
+    status: "Ongoing",
+    name: "SwiftDrop",
+    subtitle: "Parcel Delivery & Courier Management System",
+    description:
+      "Microservices-based courier platform for island-wide parcel delivery, built as eight microservices behind an API gateway. Supports customer bookings, merchant order integration, courier status updates, dispatcher assignment and real-time parcel tracking.",
+    contributionGroups: [
+      {
+        label: "Leadership",
+        items: [
+          "Lead a 10-member team across eight microservices and an API gateway; assign service ownership to team members and review pull requests",
+        ],
+      },
+      {
+        label: "Completed",
+        items: [
+          "Built signup, login and JWT issuance in the identity service, with role-based tokens supporting authorization for five user roles",
+        ],
+      },
+      {
+        label: "In development",
+        collapsible: true,
+        items: [
+          "Integrating Google OAuth 2.0 login that resolves or creates the customer account and issues the platform's standard JWT",
+          "Building the API gateway: service routing, JWT verification at the edge, role propagation to downstream services and support for long-lived streaming connections",
+          "Implementing a public tracking endpoint and mobile-responsive tracking page that expose parcel status history without revealing personal data",
+          "Setting up Docker Compose deployment for all services, PostgreSQL and RabbitMQ, with GitHub Actions CI and test coverage reporting",
+        ],
+      },
+    ],
+    tech: [
+      "React",
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "Microservices",
+      "API Gateway",
+      "PostgreSQL",
+      "RabbitMQ",
+      "JWT",
+      "OAuth 2.0",
+      "Docker",
+      "Docker Compose",
+      "GitHub Actions",
+    ],
+    repos: [{ label: "View Code", href: "https://github.com/amila-pathum/swiftdrop" }],
+  },
+  {
+    number: "PROJECT 02",
     type: "Team · 5 Developers",
     name: "MemberConnect",
     subtitle: "Member Registration System for ERP Integration",
@@ -116,7 +165,7 @@ export const projects = [
     ],
   },
   {
-    number: "PROJECT 02",
+    number: "PROJECT 03",
     type: "Team",
     name: "Task Management Application",
     description:
@@ -132,7 +181,7 @@ export const projects = [
     ],
   },
   {
-    number: "PROJECT 03",
+    number: "PROJECT 04",
     type: "Team",
     name: "Grand Restaurant Management System",
     description:
@@ -180,12 +229,6 @@ export const timeline = [
     title: "Software Engineering / DevOps Internship",
     description:
       "Actively applying. Looking for a team where I can contribute to real systems and learn from experienced engineers.",
-  },
-  {
-    kind: "open" as const,
-    eyebrow: "In progress",
-    title: "Open Source & Certifications",
-    description: "Working towards cloud and DevOps credentials, and my first open source contributions.",
   },
 ];
 

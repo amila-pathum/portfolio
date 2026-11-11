@@ -32,6 +32,12 @@ export default function Projects() {
               <div className="project-kicker-group">
                 <span className="project-kicker">{project.number}</span>
                 <span className="project-type-badge">{project.type}</span>
+                {"status" in project && project.status && (
+                  <span className="project-type-badge project-status-badge">
+                    <span className="project-status-dot" aria-hidden="true" />
+                    {project.status}
+                  </span>
+                )}
               </div>
               <h3 className="project-title">{project.name}</h3>
               {"subtitle" in project && project.subtitle && <p className="project-subtitle">{project.subtitle}</p>}
@@ -39,13 +45,42 @@ export default function Projects() {
 
               <div className="project-contributions">
                 <span className="project-contributions-label">My Contributions</span>
-                <ul className="project-contributions-list">
-                  {project.contributions.map((c) => (
-                    <li key={c} className="project-contribution">
-                      {c}
-                    </li>
-                  ))}
-                </ul>
+                {"contributionGroups" in project && project.contributionGroups ? (
+                  project.contributionGroups.map((group) => {
+                    const list = (
+                      <ul className="project-contributions-list">
+                        {group.items.map((c) => (
+                          <li key={c} className="project-contribution">
+                            {c}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                    return "collapsible" in group && group.collapsible ? (
+                      <details key={group.label} className="project-contribution-group project-contribution-details">
+                        <summary className="project-contribution-group-label project-contribution-summary">
+                          {group.label}
+                          <span className="project-contribution-count">{group.items.length}</span>
+                          <span className="project-contribution-toggle" aria-hidden="true" />
+                        </summary>
+                        {list}
+                      </details>
+                    ) : (
+                      <div key={group.label} className="project-contribution-group">
+                        <span className="project-contribution-group-label">{group.label}</span>
+                        {list}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <ul className="project-contributions-list">
+                    {project.contributions.map((c) => (
+                      <li key={c} className="project-contribution">
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className="project-tags">

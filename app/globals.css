@@ -1056,6 +1056,76 @@ button {
   text-transform: uppercase;
   color: var(--em-deep);
 }
+/* Sub-groups inside "My Contributions" (e.g. Completed / In development)
+   for ongoing projects. */
+.project-contribution-group + .project-contribution-group {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--em-tint-border);
+}
+.project-contribution-group-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+/* Collapsible group ("In development"): closed by default to keep
+   ongoing-project cards compact; the summary row is the toggle. */
+.project-contribution-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.project-contribution-summary::-webkit-details-marker { display: none; }
+.project-contribution-summary:focus-visible {
+  outline: 2px solid var(--em);
+  outline-offset: 3px;
+}
+.project-contribution-details[open] > .project-contribution-summary { margin-bottom: 8px; }
+.project-contribution-count {
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--em-deep);
+  background: var(--pg);
+  border: 1px solid var(--em-tint-border);
+  border-radius: 999px;
+  padding: 3px 7px;
+}
+.project-contribution-toggle {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--em-deep);
+}
+.project-contribution-toggle::after { content: "View more \25BE"; }
+.project-contribution-details[open] .project-contribution-toggle::after { content: "View less \25B4"; }
+.project-contribution-summary:hover .project-contribution-toggle { text-decoration: underline; }
+/* Status badge (e.g. "Ongoing"): outlined so it reads apart from the
+   filled team badge, with a pulsing dot to signal active work. */
+.project-status-badge {
+  gap: 6px;
+  background: transparent;
+}
+.project-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--em);
+  animation: project-status-pulse 1.8s ease-in-out infinite;
+}
+@keyframes project-status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-status-dot { animation: none; }
+}
 .project-contributions-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
